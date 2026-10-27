@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visão Gráfica | Colheita+</title>
+  <link rel="icon" href="assets/img/logo-icon.png">
+  <script src="js/prefs.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="graficos" data-page="graficos">
+
+  <header class="site-header">
+    <a class="brand" href="home.html">
+      <img class="brand-logo" src="assets/img/logo-white.png" alt="Colheita+">
+    </a>
+    <div class="profile">
+      <button class="profile-btn" id="profileBtn" title="Perfil do usuário" aria-label="Perfil do usuário">
+        <img src="assets/img/perfil.png" alt="">
+      </button>
+      <div class="profile-menu" id="profileMenu"></div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="page-inner">
+      <h1 class="page-title">Visão Gráfica</h1>
+      <p class="page-sub">Acompanhe os gastos e as atividades das suas produções.</p>
+
+      <div class="filters-row" role="search" aria-label="Filtros dos gráficos">
+        <div class="field" style="flex:2;min-width:260px">
+          <label id="lblPeriodo">Período</label>
+          <div class="range-chips" role="group" aria-labelledby="lblPeriodo" id="rangeChips">
+            <button type="button" data-range="30">30 dias</button>
+            <button type="button" data-range="90">3 meses</button>
+            <button type="button" data-range="365">12 meses</button>
+            <button type="button" data-range="tudo">Tudo</button>
+          </div>
+        </div>
+        <div class="field">
+          <label for="fDe">De</label>
+          <input type="date" id="fDe">
+        </div>
+        <div class="field">
+          <label for="fAte">Até</label>
+          <input type="date" id="fAte">
+        </div>
+        <div class="field">
+          <label for="fProp">Propriedade</label>
+          <select id="fProp"><option value="">Todas</option></select>
+        </div>
+        <div class="field">
+          <label for="fProd">Produção</label>
+          <select id="fProd"><option value="">Todas</option></select>
+        </div>
+      </div>
+
+      <div class="kpi-grid" id="kpis"></div>
+
+      <div class="charts-grid">
+        <section class="chart-card wide" aria-labelledby="tMes">
+          <h3 id="tMes">Gastos ao longo do tempo</h3>
+          <p class="chart-sub" id="subMes">Mão de obra, materiais e despesas somados por período.</p>
+          <div id="chMes"></div>
+        </section>
+        <section class="chart-card" aria-labelledby="tProd">
+          <h3 id="tProd">Gasto total por produção</h3>
+          <p class="chart-sub">Soma de todos os custos no período.</p>
+          <div id="chProd"></div>
+        </section>
+        <section class="chart-card" aria-labelledby="tCat">
+          <h3 id="tCat">Despesas por categoria</h3>
+          <p class="chart-sub">Onde o dinheiro das despesas foi gasto.</p>
+          <div id="chCat"></div>
+        </section>
+        <section class="chart-card" aria-labelledby="tAtiv">
+          <h3 id="tAtiv">Atividades anotadas</h3>
+          <p class="chart-sub">Quantidade de anotações de atividades feitas.</p>
+          <div id="chAtiv"></div>
+        </section>
+        <section class="chart-card" aria-labelledby="tTransp">
+          <h3 id="tTransp">Quantidade transportada</h3>
+          <p class="chart-sub">Soma das quantidades registradas nos transportes.</p>
+          <div id="chTransp"></div>
+        </section>
+      </div>
+      <div class="chart-tip" id="chartTip" role="tooltip"></div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-logo"><img src="assets/img/logo.png" alt="Colheita+"></div>
+    <div>
+      <h4>Contatos:</h4>
+      <ul>
+        <li>(17) 1234-5678</li>
+        <li>colheitamais@gmail.com</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Suporte:</h4>
+      <ul><li>Manual</li></ul>
+    </div>
+  </footer>
+
+  <script src="js/common.js"></script>
+  <script src="js/graficos.js"></script>
+</body>
+</html>

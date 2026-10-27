@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Produções | Colheita+</title>
+  <!-- Tela antiga: as produções agora ficam em producoes.html (uma tela por função) -->
+  <script>
+    (function () {
+      var id = new URLSearchParams(location.search).get('id');
+      location.replace('producoes.html' + (id ? '?propriedade=' + encodeURIComponent(id) : ''));
+    })();
+  </script>
+</head>
+<body></body>
+</html>

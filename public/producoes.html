@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produções | Colheita+</title>
+  <link rel="icon" href="assets/img/logo-icon.png">
+  <script src="js/prefs.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="gestao" data-page="producoes">
+
+  <header class="site-header">
+    <a class="brand" href="home.html">
+      <img class="brand-logo" src="assets/img/logo-white.png" alt="Colheita+">
+    </a>
+    <div class="profile">
+      <button class="profile-btn" id="profileBtn" title="Perfil do usuário" aria-label="Perfil do usuário">
+        <img src="assets/img/perfil.png" alt="">
+      </button>
+      <div class="profile-menu" id="profileMenu"></div>
+    </div>
+  </header>
+
+  <main class="page gestao-page">
+    <div class="page-inner">
+      <h1 class="page-title">Produções</h1>
+      <p class="page-sub">Veja, edite, reorganize e gere os PDFs das produções de cada propriedade.</p>
+
+      <section class="box sel-box" aria-label="Escolher propriedade">
+        <label for="selPropriedade">Propriedade</label>
+        <select id="selPropriedade" class="sel-full"><option value="">Carregando...</option></select>
+      </section>
+
+      <section class="box info-box" id="infoBox" aria-live="polite"></section>
+
+      <section class="box" aria-labelledby="tNav">
+        <h2 class="box-title" id="tNav">Navegação rápida</h2>
+        <nav class="nav-rapida-grid" id="navRapida"></nav>
+      </section>
+    </div>
+  </main>
+
+  <!-- Janela: cadastrar / editar registro -->
+  <div class="modal-overlay" id="modalRegistro" data-persist-modal>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="tModalRegistro">
+      <div class="modal-head">
+        <h3 id="tModalRegistro">Cadastrar</h3>
+        <button class="modal-close" data-close aria-label="Fechar">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-msg" id="regMsg"></div>
+        <form id="formRegistro" novalidate></form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Janela: cadastrar / editar produção -->
+  <div class="modal-overlay" id="modalProducao" data-persist-modal>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="tModalProducao">
+      <div class="modal-head">
+        <h3 id="tModalProducao">Cadastrar Produção</h3>
+        <button class="modal-close" data-close aria-label="Fechar">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-msg" id="prodMsg"></div>
+        <form id="formProducao" novalidate>
+          <div class="field">
+            <label for="pPropriedade">Propriedade: <span class="req">*</span></label>
+            <select id="pPropriedade" name="propriedade" data-persist="propriedade" required>
+              <option value="">Selecione uma propriedade...</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="pNome">Nome da produção: <span class="req">*</span></label>
+            <input type="text" id="pNome" name="nome_producao" placeholder="Ex.: Milho safra 2026 - Talhão 2" data-persist="nome_producao" maxlength="160">
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="pConteudo">O que é produzido: <span class="req">*</span></label>
+              <input type="text" id="pConteudo" name="conteudo_producao" placeholder="Ex.: Milho, Café, Soja" data-persist="conteudo_producao" list="listaCulturas">
+              <datalist id="listaCulturas">
+                <option value="Milho"><option value="Soja"><option value="Café"><option value="Cana-de-açúcar">
+                <option value="Laranja"><option value="Feijão"><option value="Arroz"><option value="Trigo">
+                <option value="Algodão"><option value="Mandioca"><option value="Seringueira"><option value="Hortaliças">
+              </datalist>
+            </div>
+            <div class="field">
+              <label for="pMao">Mão de obra prevista (pessoas):</label>
+              <input type="number" id="pMao" name="quantidade_mao_de_obra" min="0" step="1" data-persist="quantidade_mao_de_obra">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="pArea">Área plantada (hectares):</label>
+              <input type="text" inputmode="decimal" id="pArea" name="area_plantada" placeholder="Ex.: 12,5" data-persist="area_plantada">
+            </div>
+            <div class="field">
+              <label for="pRuas">Quantidade de ruas:</label>
+              <input type="number" id="pRuas" name="quantidade_ruas" min="0" step="1" data-persist="quantidade_ruas">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="pInicio">Data de início:</label>
+              <input type="date" id="pInicio" name="data_inicio" data-persist="data_inicio">
+            </div>
+            <div class="field">
+              <label for="pFim">Término previsto:</label>
+              <input type="date" id="pFim" name="data_fim_prevista" data-persist="data_fim_prevista">
+            </div>
+          </div>
+          <div class="field">
+            <label for="pFerr">Ferramentas / máquinas utilizadas:</label>
+            <input type="text" id="pFerr" name="ferramentas_producao" placeholder="Ex.: Trator, plantadeira, pulverizador" data-persist="ferramentas_producao" maxlength="200">
+          </div>
+          <div class="field">
+            <label for="pDesc">Descrição:</label>
+            <textarea id="pDesc" name="descricao_producao" placeholder="Informações adicionais sobre a produção" data-persist="descricao_producao"></textarea>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn btn-outline" data-close>Cancelar</button>
+            <button type="submit" class="btn" id="prodSubmit">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-logo"><img src="assets/img/logo.png" alt="Colheita+"></div>
+    <div>
+      <h4>Contatos:</h4>
+      <ul>
+        <li>(17) 1234-5678</li>
+        <li>colheitamais@gmail.com</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Suporte:</h4>
+      <ul><li>Manual</li></ul>
+    </div>
+  </footer>
+
+  <script src="js/common.js"></script>
+  <script src="js/producao-form.js"></script>
+  <script src="js/gestao.js"></script>
+</body>
+</html>

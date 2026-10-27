@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Colheita+</title>
+  <link rel="icon" href="assets/img/logo-icon.png">
+  <script src="js/prefs.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth">
+
+  <main>
+    <section class="auth-brand">
+      <img class="brand-logo-big" src="assets/img/logo-white.png" alt="Colheita+">
+      <div class="sub">Sistema de Gestão de<br>Produção Agrícola</div>
+    </section>
+
+    <section class="auth-form">
+      <h2>Área de Login</h2>
+      <div class="form-msg" id="msg"></div>
+      <form id="formLogin" novalidate>
+        <div class="field">
+          <label for="login">Nome ou Email:</label>
+          <input type="text" id="login" name="login" autocomplete="username" required>
+        </div>
+        <div class="field">
+          <label for="senha">Senha:</label>
+          <input type="password" id="senha" name="senha" autocomplete="current-password" required>
+        </div>
+        <div class="field">
+          <label for="confirmarSenha">Confirme sua senha:</label>
+          <input type="password" id="confirmarSenha" name="confirmarSenha" autocomplete="current-password" required>
+        </div>
+        <button type="submit" class="btn btn-block">Fazer Login</button>
+      </form>
+      <p class="switch-link"><a href="cadastro.html">Ainda não tem uma conta?<br>Faça cadastro.</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-logo"><img src="assets/img/logo.png" alt="Colheita+"></div>
+    <div>
+      <h4>Contatos:</h4>
+      <ul>
+        <li>(17) 1234-5678</li>
+        <li>colheitamais@gmail.com</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Suporte:</h4>
+      <ul><li>Manual</li></ul>
+    </div>
+  </footer>
+
+  <script src="js/common.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

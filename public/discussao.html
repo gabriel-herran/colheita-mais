@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discussão | Colheita+</title>
+  <link rel="icon" href="assets/img/logo-icon.png">
+  <script src="js/prefs.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="discussao" data-page="discussao">
+
+  <header class="site-header">
+    <a class="brand" href="home.html">
+      <img class="brand-logo" src="assets/img/logo-white.png" alt="Colheita+">
+    </a>
+    <div class="profile">
+      <button class="profile-btn" id="profileBtn" title="Perfil do usuário" aria-label="Perfil do usuário">
+        <img src="assets/img/perfil.png" alt="">
+      </button>
+      <div class="profile-menu" id="profileMenu"></div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="page-inner">
+      <a class="link-btn disc-back" href="forum.html"><span data-icon="voltar"></span> Voltar ao Fórum</a>
+      <div id="discArea"><p class="empty-state">Carregando...</p></div>
+    </div>
+  </main>
+
+  <!-- Janela: Editar discussão (somente o criador) -->
+  <div class="modal-overlay" id="modalEditar">
+    <div class="modal modal-lg" role="dialog" aria-modal="true" aria-labelledby="tEditar">
+      <div class="modal-head">
+        <h3 id="tEditar">Editar discussão</h3>
+        <button class="modal-close" data-close aria-label="Fechar">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-msg" id="editMsg"></div>
+        <form id="formEditar" novalidate>
+          <div class="field">
+            <label for="eTitulo">Título: <span class="req">*</span></label>
+            <input type="text" id="eTitulo" maxlength="160">
+          </div>
+          <div class="field">
+            <label for="eDesc">Descrição: <span class="req">*</span></label>
+            <textarea id="eDesc" rows="7"></textarea>
+          </div>
+          <div class="field">
+            <span id="lblETags" style="display:block;font-size:16px;margin-bottom:6px">Tags (escolha de 1 a 5): <span class="req">*</span></span>
+            <div class="tag-picker" id="eTags" role="group" aria-labelledby="lblETags"></div>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn btn-outline" data-close>Cancelar</button>
+            <button type="submit" class="btn" id="editSubmit">Salvar alterações</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-logo"><img src="assets/img/logo.png" alt="Colheita+"></div>
+    <div>
+      <h4>Contatos:</h4>
+      <ul>
+        <li>(17) 1234-5678</li>
+        <li>colheitamais@gmail.com</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Suporte:</h4>
+      <ul><li>Manual</li></ul>
+    </div>
+  </footer>
+
+  <script src="js/common.js"></script>
+  <script src="js/discussao.js"></script>
+</body>
+</html>

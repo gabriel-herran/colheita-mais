@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora | Colheita+</title>
+  <link rel="icon" href="assets/img/logo-icon.png">
+  <script src="js/prefs.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="calculadora" data-page="calculadora">
+
+  <header class="site-header">
+    <a class="brand" href="home.html">
+      <img class="brand-logo" src="assets/img/logo-white.png" alt="Colheita+">
+    </a>
+    <div class="profile">
+      <button class="profile-btn" id="profileBtn" title="Perfil do usuário" aria-label="Perfil do usuário">
+        <img src="assets/img/perfil.png" alt="">
+      </button>
+      <div class="profile-menu" id="profileMenu"></div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="page-inner">
+      <h1 class="page-title" style="text-align:center">Calculadora</h1>
+      <div class="calc" role="application" aria-label="Calculadora">
+        <div class="calc-display">
+          <div class="calc-prev" id="calcPrev" aria-live="polite"></div>
+          <div class="calc-expr" id="calcExpr" aria-live="polite" aria-atomic="true">0</div>
+        </div>
+        <div class="calc-keys" id="calcKeys">
+          <button type="button" class="calc-key fn" data-k="(">(</button>
+          <button type="button" class="calc-key fn" data-k=")">)</button>
+          <button type="button" class="calc-key fn" data-k="%">%</button>
+          <button type="button" class="calc-key fn" data-k="clear" id="btnClear">AC</button>
+          <button type="button" class="calc-key" data-k="7">7</button>
+          <button type="button" class="calc-key" data-k="8">8</button>
+          <button type="button" class="calc-key" data-k="9">9</button>
+          <button type="button" class="calc-key op" data-k="÷" aria-label="dividir">÷</button>
+          <button type="button" class="calc-key" data-k="4">4</button>
+          <button type="button" class="calc-key" data-k="5">5</button>
+          <button type="button" class="calc-key" data-k="6">6</button>
+          <button type="button" class="calc-key op" data-k="×" aria-label="multiplicar">×</button>
+          <button type="button" class="calc-key" data-k="1">1</button>
+          <button type="button" class="calc-key" data-k="2">2</button>
+          <button type="button" class="calc-key" data-k="3">3</button>
+          <button type="button" class="calc-key op" data-k="−" aria-label="subtrair">−</button>
+          <button type="button" class="calc-key" data-k="0">0</button>
+          <button type="button" class="calc-key" data-k="." aria-label="vírgula">,</button>
+          <button type="button" class="calc-key eq" data-k="=" aria-label="igual">=</button>
+          <button type="button" class="calc-key op" data-k="+" aria-label="somar">+</button>
+        </div>
+        <p class="calc-hint">Dica: você também pode usar o teclado (números, + - * / % ( ) , Enter e Backspace).</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-logo"><img src="assets/img/logo.png" alt="Colheita+"></div>
+    <div>
+      <h4>Contatos:</h4>
+      <ul>
+        <li>(17) 1234-5678</li>
+        <li>colheitamais@gmail.com</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Suporte:</h4>
+      <ul><li>Manual</li></ul>
+    </div>
+  </footer>
+
+  <script src="js/common.js"></script>
+  <script src="js/calculadora.js"></script>
+</body>
+</html>

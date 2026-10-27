@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clima | Colheita+</title>
+  <link rel="icon" href="assets/img/logo-icon.png">
+  <script src="js/prefs.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="clima" data-page="clima">
+
+  <header class="site-header">
+    <a class="brand" href="home.html">
+      <img class="brand-logo" src="assets/img/logo-white.png" alt="Colheita+">
+    </a>
+    <div class="profile">
+      <button class="profile-btn" id="profileBtn" title="Perfil do usuário" aria-label="Perfil do usuário">
+        <img src="assets/img/perfil.png" alt="">
+      </button>
+      <div class="profile-menu" id="profileMenu"></div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="page-inner">
+      <h1 class="page-title">Clima</h1>
+      <div class="clima-top">
+        <section class="box" aria-labelledby="tAgora">
+          <h2 class="box-title" id="tAgora">Agora em <span id="nomeCidade"></span></h2>
+          <div class="clima-agora" id="climaAgora"><p class="reg-empty">Carregando...</p></div>
+        </section>
+        <section class="box cidade-box">
+          <label for="selCidade">Selecione sua região:</label>
+          <select id="selCidade" size="7"></select>
+          <p class="hint">A cidade escolhida também é usada no resumo da tela principal.</p>
+        </section>
+      </div>
+
+      <section class="box" aria-labelledby="tSemana">
+        <h2 class="box-title" id="tSemana">Previsão da semana <small id="periodoSemana" style="font-size:15px;color:var(--text-muted)"></small></h2>
+        <div class="semana-grid" id="semanaGrid"></div>
+        <div class="clima-legenda">
+          <span>Frio</span><span class="escala" aria-hidden="true"></span><span>Quente</span>
+          <span>· A cor de cada dia indica a temperatura média prevista.</span>
+        </div>
+        <p class="clima-fonte">Dados: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> (estimativa, pode variar).</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-logo"><img src="assets/img/logo.png" alt="Colheita+"></div>
+    <div>
+      <h4>Contatos:</h4>
+      <ul>
+        <li>(17) 1234-5678</li>
+        <li>colheitamais@gmail.com</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Suporte:</h4>
+      <ul><li>Manual</li></ul>
+    </div>
+  </footer>
+
+  <script src="js/common.js"></script>
+  <script src="js/clima-api.js"></script>
+  <script src="js/clima.js"></script>
+</body>
+</html>

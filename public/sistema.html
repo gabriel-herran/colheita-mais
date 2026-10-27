@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propriedades e Produções | Colheita+</title>
+  <link rel="icon" href="assets/img/logo-icon.png">
+  <script src="js/prefs.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="sistema" data-page="sistema">
+
+  <header class="site-header">
+    <a class="brand" href="home.html">
+      <img class="brand-logo" src="assets/img/logo-white.png" alt="Colheita+">
+    </a>
+    <div class="profile">
+      <button class="profile-btn" id="profileBtn" title="Perfil do usuário" aria-label="Perfil do usuário">
+        <img src="assets/img/perfil.png" alt="">
+      </button>
+      <div class="profile-menu" id="profileMenu"></div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="dash">
+      <h1 class="sr-only">Propriedades e Produções</h1>
+
+      <!-- Resumo Geral -->
+      <section class="box" aria-labelledby="tResumo">
+        <h2 class="box-title" id="tResumo">Resumo Geral</h2>
+        <div class="resumo-cards">
+          <div class="resumo-card verde">
+            <span class="rc-ico" data-icon="broto"></span>
+            <div><span class="rc-num" id="rsProps">–</span>Propriedades Cadastradas</div>
+          </div>
+          <div class="resumo-card azul">
+            <span class="rc-ico" data-icon="celeiro"></span>
+            <div><span class="rc-num" id="rsProds">–</span>Produções Cadastradas</div>
+          </div>
+          <a class="resumo-card amarelo" href="clima.html" title="Ver previsão da semana">
+            <span class="rc-ico" id="rsClimaIco"></span>
+            <div><span class="rc-num" id="rsClima">–</span><span id="rsClimaDesc">Clima Atual</span></div>
+          </a>
+          <div class="resumo-card rosa">
+            <span class="rc-ico" data-icon="moeda"></span>
+            <div><span class="rc-num" id="rsGastos">–</span>Gastos neste mês</div>
+          </div>
+          <a class="resumo-card verde" href="calendario.html" title="Abrir calendário">
+            <span class="rc-ico" data-icon="calendario"></span>
+            <div><span class="rc-num" id="rsEventos">–</span>Anotações nos próximos 7 dias</div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Ações principais -->
+      <section class="box" aria-label="Propriedades e produções">
+        <div class="acoes-grid">
+          <button type="button" class="acao-btn amarelo" id="btnCadastrar">
+            <span data-icon="plus"></span>
+            <span>Cadastrar<br>Propriedade</span>
+          </button>
+          <button type="button" class="acao-btn verde" id="btnGerenciar">
+            <span data-icon="celeiro"></span>
+            <span>Gerenciar<br>Produções</span>
+          </button>
+          <button type="button" class="acao-btn azul" id="btnCadastrarProducao">
+            <span data-icon="broto"></span>
+            <span>Cadastrar<br>Produção</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Acesso rápido -->
+      <section class="box" aria-labelledby="tRapido">
+        <h2 class="box-title" id="tRapido">Acesso rápido</h2>
+        <div class="rapido-grid">
+          <a class="rapido-btn" href="calculadora.html"><span data-icon="calc"></span>Calculadora</a>
+          <a class="rapido-btn" href="calendario.html"><span data-icon="calendario"></span>Calendário</a>
+          <a class="rapido-btn" href="clima.html"><span data-icon="clima"></span>Clima</a>
+          <a class="rapido-btn" href="forum.html"><span data-icon="forum"></span>Fórum</a>
+          <a class="rapido-btn" href="graficos.html"><span data-icon="grafico"></span>Visão Gráfica</a>
+          <button type="button" class="rapido-btn" id="rapidoConfig"><span data-icon="engrenagem"></span>Configurações</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Janela: cadastrar / editar propriedade -->
+  <div class="modal-overlay" id="modalForm" data-persist-modal>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalFormTitle">
+      <div class="modal-head">
+        <h3 id="modalFormTitle">Cadastrar Propriedade</h3>
+        <button class="modal-close" data-close aria-label="Fechar">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-msg" id="propMsg"></div>
+        <form id="formProp" novalidate>
+          <input type="hidden" id="propId">
+          <div class="field">
+            <label for="propNome">Nome da propriedade: <span class="req">*</span></label>
+            <input type="text" id="propNome" required data-persist="nome">
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="propLocal">Localização:</label>
+              <input type="text" id="propLocal" placeholder="Cidade / Estado" data-persist="local">
+            </div>
+            <div class="field">
+              <label for="propArea">Área (hectares):</label>
+              <input type="number" id="propArea" min="0" step="0.01" data-persist="area">
+            </div>
+          </div>
+          <div class="field">
+            <label for="propCultura">Cultura principal:</label>
+            <input type="text" id="propCultura" placeholder="Ex.: Soja, Milho, Café" data-persist="cultura">
+          </div>
+          <div class="field">
+            <label for="propObs">Observações:</label>
+            <input type="text" id="propObs" placeholder="Informações adicionais" data-persist="obs">
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn btn-outline" data-close>Cancelar</button>
+            <button type="submit" class="btn" id="propSubmit">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Janela: abrir / reorganizar propriedades -->
+  <div class="modal-overlay" id="modalGestao" data-persist-modal>
+    <div class="modal modal-lg" role="dialog" aria-modal="true" aria-labelledby="tGestao">
+      <div class="modal-head">
+        <h3 id="tGestao">Gerenciar Produções</h3>
+        <button class="modal-close" data-close aria-label="Fechar">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="page-sub" style="margin:0 0 12px">Escolha o que deseja gerenciar. Cada opção abre uma tela própria.</p>
+        <nav class="gestao-grid" id="gestaoGrid" aria-label="Funções de gestão"></nav>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Janela: cadastrar / editar produção -->
+  <div class="modal-overlay" id="modalProducao" data-persist-modal>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="tModalProducao">
+      <div class="modal-head">
+        <h3 id="tModalProducao">Cadastrar Produção</h3>
+        <button class="modal-close" data-close aria-label="Fechar">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-msg" id="prodMsg"></div>
+        <form id="formProducao" novalidate>
+          <div class="field">
+            <label for="pPropriedade">Propriedade: <span class="req">*</span></label>
+            <select id="pPropriedade" name="propriedade" data-persist="propriedade" required>
+              <option value="">Selecione uma propriedade...</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="pNome">Nome da produção: <span class="req">*</span></label>
+            <input type="text" id="pNome" name="nome_producao" placeholder="Ex.: Milho safra 2026 - Talhão 2" data-persist="nome_producao" maxlength="160">
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="pConteudo">O que é produzido: <span class="req">*</span></label>
+              <input type="text" id="pConteudo" name="conteudo_producao" placeholder="Ex.: Milho, Café, Soja" data-persist="conteudo_producao" list="listaCulturas">
+              <datalist id="listaCulturas">
+                <option value="Milho"><option value="Soja"><option value="Café"><option value="Cana-de-açúcar">
+                <option value="Laranja"><option value="Feijão"><option value="Arroz"><option value="Trigo">
+                <option value="Algodão"><option value="Mandioca"><option value="Seringueira"><option value="Hortaliças">
+              </datalist>
+            </div>
+            <div class="field">
+              <label for="pMao">Mão de obra prevista (pessoas):</label>
+              <input type="number" id="pMao" name="quantidade_mao_de_obra" min="0" step="1" data-persist="quantidade_mao_de_obra">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="pArea">Área plantada (hectares):</label>
+              <input type="text" inputmode="decimal" id="pArea" name="area_plantada" placeholder="Ex.: 12,5" data-persist="area_plantada">
+            </div>
+            <div class="field">
+              <label for="pRuas">Quantidade de ruas:</label>
+              <input type="number" id="pRuas" name="quantidade_ruas" min="0" step="1" data-persist="quantidade_ruas">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="pInicio">Data de início:</label>
+              <input type="date" id="pInicio" name="data_inicio" data-persist="data_inicio">
+            </div>
+            <div class="field">
+              <label for="pFim">Término previsto:</label>
+              <input type="date" id="pFim" name="data_fim_prevista" data-persist="data_fim_prevista">
+            </div>
+          </div>
+          <div class="field">
+            <label for="pFerr">Ferramentas / máquinas utilizadas:</label>
+            <input type="text" id="pFerr" name="ferramentas_producao" placeholder="Ex.: Trator, plantadeira, pulverizador" data-persist="ferramentas_producao" maxlength="200">
+          </div>
+          <div class="field">
+            <label for="pDesc">Descrição:</label>
+            <textarea id="pDesc" name="descricao_producao" placeholder="Informações adicionais sobre a produção" data-persist="descricao_producao"></textarea>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn btn-outline" data-close>Cancelar</button>
+            <button type="submit" class="btn" id="prodSubmit">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-logo"><img src="assets/img/logo.png" alt="Colheita+"></div>
+    <div>
+      <h4>Contatos:</h4>
+      <ul>
+        <li>(17) 1234-5678</li>
+        <li>colheitamais@gmail.com</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Suporte:</h4>
+      <ul><li>Manual</li></ul>
+    </div>
+  </footer>
+
+  <script src="js/common.js"></script>
+  <script src="js/clima-api.js"></script>
+  <script src="js/producao-form.js"></script>
+  <script src="js/sistema.js"></script>
+</body>
+</html>

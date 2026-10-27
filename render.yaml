@@ -1,0 +1,28 @@
+# Configuração para publicar o Colheita+ no Render (https://render.com).
+# No painel do Render: New > Blueprint > escolha este repositório.
+# Cria o site (plano grátis) e o banco PostgreSQL (plano grátis) já ligados.
+
+services:
+  - type: web
+    name: colheita-mais
+    runtime: node
+    plan: free
+    region: virginia
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: colheita-db
+          property: connectionString
+
+databases:
+  - name: colheita-db
+    plan: free
+    region: virginia
+    databaseName: colheita

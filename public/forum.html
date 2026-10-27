@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fórum | Colheita+</title>
+  <link rel="icon" href="assets/img/logo-icon.png">
+  <script src="js/prefs.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="forum" data-page="forum">
+
+  <header class="site-header">
+    <a class="brand" href="home.html">
+      <img class="brand-logo" src="assets/img/logo-white.png" alt="Colheita+">
+    </a>
+    <div class="profile">
+      <button class="profile-btn" id="profileBtn" title="Perfil do usuário" aria-label="Perfil do usuário">
+        <img src="assets/img/perfil.png" alt="">
+      </button>
+      <div class="profile-menu" id="profileMenu"></div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="page-inner">
+      <h1 class="page-title">Fórum</h1>
+      <p class="page-sub">Troque experiências, tire dúvidas e compartilhe dicas com outros produtores.</p>
+
+      <div class="forum-toolbar">
+        <div class="search-box" role="search">
+          <span data-icon="lupa"></span>
+          <label class="sr-only" for="busca">Pesquisar discussões</label>
+          <input type="search" id="busca" placeholder="Pesquisar discussões..." data-persist="busca">
+        </div>
+        <button type="button" class="btn btn-gray btn-sm" id="btnFiltrar" aria-expanded="false" aria-controls="filtroPanel">
+          <span data-icon="filtro"></span> Filtrar <span class="filter-count" id="filtroCount" hidden></span>
+        </button>
+        <button type="button" class="btn btn-sm" id="btnNovaDiscussao">
+          <span data-icon="plus"></span> Iniciar uma Discussão
+        </button>
+
+        <div class="filter-panel" id="filtroPanel" hidden>
+          <h4>Tags</h4>
+          <div class="tag-picker" id="filtroTags"></div>
+          <h4>Situação</h4>
+          <select id="filtroStatus" data-persist="status">
+            <option value="">Todas</option>
+            <option value="abertas">Abertas</option>
+            <option value="trancadas">Trancadas (resolvidas)</option>
+          </select>
+          <h4>Ordenar por</h4>
+          <select id="filtroOrdem" data-persist="ordem">
+            <option value="recentes">Mais recentes</option>
+            <option value="comentadas">Mais comentadas</option>
+            <option value="antigas">Mais antigas</option>
+          </select>
+          <h4>Autor</h4>
+          <label style="display:flex;gap:8px;align-items:center;font-size:15px">
+            <input type="checkbox" id="filtroMinhas" data-persist="minhas"> Somente as minhas discussões
+          </label>
+          <div class="filter-actions">
+            <button type="button" class="link-btn" id="filtroLimpar">Limpar filtros</button>
+            <button type="button" class="btn btn-sm" id="filtroAplicar">Aplicar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="disc-list" id="discList" aria-live="polite"></div>
+    </div>
+  </main>
+
+  <!-- Janela: iniciar uma discussão -->
+  <div class="modal-overlay" id="modalDiscussao" data-persist-modal>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="tNovaDisc">
+      <div class="modal-head">
+        <h3 id="tNovaDisc">Iniciar uma Discussão</h3>
+        <button class="modal-close" data-close aria-label="Fechar">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-msg" id="discMsg"></div>
+        <form id="formDiscussao" novalidate>
+          <div class="field">
+            <label for="dTitulo">Título: <span class="req">*</span></label>
+            <input type="text" id="dTitulo" maxlength="160" placeholder="Ex.: Como controlar a lagarta-do-cartucho no milho?" data-persist="titulo">
+          </div>
+          <div class="field">
+            <label for="dDesc">Descrição: <span class="req">*</span></label>
+            <textarea id="dDesc" rows="7" placeholder="Explique sua dúvida, dica ou experiência com detalhes." data-persist="descricao"></textarea>
+          </div>
+          <div class="field">
+            <span class="label-like" id="lblTags" style="display:block;font-size:16px;margin-bottom:6px">Tags (escolha de 1 a 5): <span class="req">*</span></span>
+            <div class="tag-picker" id="dTags" role="group" aria-labelledby="lblTags"></div>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn btn-outline" data-close>Cancelar</button>
+            <button type="submit" class="btn" id="discSubmit">Publicar discussão</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-logo"><img src="assets/img/logo.png" alt="Colheita+"></div>
+    <div>
+      <h4>Contatos:</h4>
+      <ul>
+        <li>(17) 1234-5678</li>
+        <li>colheitamais@gmail.com</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Suporte:</h4>
+      <ul><li>Manual</li></ul>
+    </div>
+  </footer>
+
+  <script src="js/common.js"></script>
+  <script src="js/forum.js"></script>
+</body>
+</html>

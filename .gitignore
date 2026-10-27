@@ -1,0 +1,9 @@
+node_modules/
+_assets_raw/
+npm-debug.log*
+scripts/watchdog.log
+scripts/server.log
+config.local.js
+.claude/
+.site/
+scripts/*.log

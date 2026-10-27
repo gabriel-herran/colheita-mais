@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendário | Colheita+</title>
+  <link rel="icon" href="assets/img/logo-icon.png">
+  <script src="js/prefs.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="calendario" data-page="calendario">
+
+  <header class="site-header">
+    <a class="brand" href="home.html">
+      <img class="brand-logo" src="assets/img/logo-white.png" alt="Colheita+">
+    </a>
+    <div class="profile">
+      <button class="profile-btn" id="profileBtn" title="Perfil do usuário" aria-label="Perfil do usuário">
+        <img src="assets/img/perfil.png" alt="">
+      </button>
+      <div class="profile-menu" id="profileMenu"></div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="page-inner">
+      <h1 class="page-title">Calendário</h1>
+      <div class="cal-layout">
+        <section class="box" aria-label="Calendário do mês">
+          <div class="cal-head">
+            <h2 id="calTitulo" aria-live="polite"></h2>
+            <div class="cal-nav">
+              <button type="button" class="nav-btn" id="calPrev" aria-label="Mês anterior" title="Mês anterior">&#8249;</button>
+              <label class="sr-only" for="calMes">Mês</label>
+              <select id="calMes"></select>
+              <label class="sr-only" for="calAno">Ano</label>
+              <select id="calAno"></select>
+              <button type="button" class="nav-btn" id="calNext" aria-label="Próximo mês" title="Próximo mês">&#8250;</button>
+              <button type="button" class="btn btn-gray btn-sm" id="calHoje">Hoje</button>
+            </div>
+          </div>
+          <div class="cal-grid" id="calGrid" role="grid"></div>
+        </section>
+
+        <aside class="box cal-side" aria-live="polite">
+          <h3>Dia selecionado</h3>
+          <div class="cal-side-date" id="sideData">Clique em um dia do calendário.</div>
+          <button type="button" class="btn btn-sm btn-block" id="btnAnotar" hidden>
+            <span data-icon="nota"></span> Fazer uma anotação
+          </button>
+          <div id="sideLista" style="margin-top:14px"></div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- Janela: fazer uma anotação -->
+  <div class="modal-overlay" id="modalAnotacao" data-persist-modal>
+    <div class="modal modal-sm" role="dialog" aria-modal="true" aria-labelledby="tAnotacao">
+      <div class="modal-head">
+        <h3 id="tAnotacao">Fazer uma anotação</h3>
+        <button class="modal-close" data-close aria-label="Fechar">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p id="anotacaoData" style="margin-bottom:12px;color:var(--text-soft)"></p>
+        <div class="form-msg" id="anotMsg"></div>
+        <form id="formAnotacao" novalidate>
+          <div class="field" id="campoData" hidden>
+            <label for="aData">Data: <span class="req">*</span></label>
+            <input type="date" id="aData">
+          </div>
+          <div class="field">
+            <label for="aTitulo">Título (opcional):</label>
+            <input type="text" id="aTitulo" maxlength="120" placeholder="Ex.: Colher milho do talhão 2" data-persist="titulo">
+            <div class="hint">Aparece nas notificações: "Faltam 3 dias para ..."</div>
+          </div>
+          <div class="field">
+            <label for="aDesc">Descrição: <span class="req">*</span></label>
+            <textarea id="aDesc" rows="5" placeholder="O que deve ser feito neste dia?" data-persist="descricao"></textarea>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn btn-outline" data-close>Cancelar</button>
+            <button type="submit" class="btn">Salvar anotação</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-logo"><img src="assets/img/logo.png" alt="Colheita+"></div>
+    <div>
+      <h4>Contatos:</h4>
+      <ul>
+        <li>(17) 1234-5678</li>
+        <li>colheitamais@gmail.com</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Suporte:</h4>
+      <ul><li>Manual</li></ul>
+    </div>
+  </footer>
+
+  <script src="js/common.js"></script>
+  <script src="js/calendario.js"></script>
+</body>
+</html>

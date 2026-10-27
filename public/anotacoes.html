@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anotações escritas | Colheita+</title>
+  <link rel="icon" href="assets/img/logo-icon.png">
+  <script src="js/prefs.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="gestao" data-page="anotacoes">
+
+  <header class="site-header">
+    <a class="brand" href="home.html">
+      <img class="brand-logo" src="assets/img/logo-white.png" alt="Colheita+">
+    </a>
+    <div class="profile">
+      <button class="profile-btn" id="profileBtn" title="Perfil do usuário" aria-label="Perfil do usuário">
+        <img src="assets/img/perfil.png" alt="">
+      </button>
+      <div class="profile-menu" id="profileMenu"></div>
+    </div>
+  </header>
+
+  <main class="page gestao-page">
+    <div class="page-inner">
+      <h1 class="page-title">Anotações escritas</h1>
+      <p class="page-sub">Anote o que foi feito em cada produção. A data e a hora são salvas automaticamente.</p>
+
+      <section class="box sel-box" aria-label="Escolher propriedade">
+        <label for="selPropriedade">Propriedade</label>
+        <select id="selPropriedade" class="sel-full"><option value="">Carregando...</option></select>
+      </section>
+
+      <section class="box info-box" id="infoBox" aria-live="polite"></section>
+
+      <section class="box" aria-labelledby="tNav">
+        <h2 class="box-title" id="tNav">Navegação rápida</h2>
+        <nav class="nav-rapida-grid" id="navRapida"></nav>
+      </section>
+    </div>
+  </main>
+
+  <!-- Janela: cadastrar / editar registro -->
+  <div class="modal-overlay" id="modalRegistro" data-persist-modal>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="tModalRegistro">
+      <div class="modal-head">
+        <h3 id="tModalRegistro">Cadastrar</h3>
+        <button class="modal-close" data-close aria-label="Fechar">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-msg" id="regMsg"></div>
+        <form id="formRegistro" novalidate></form>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-logo"><img src="assets/img/logo.png" alt="Colheita+"></div>
+    <div>
+      <h4>Contatos:</h4>
+      <ul>
+        <li>(17) 1234-5678</li>
+        <li>colheitamais@gmail.com</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Suporte:</h4>
+      <ul><li>Manual</li></ul>
+    </div>
+  </footer>
+
+  <script src="js/common.js"></script>
+  <script src="js/gestao.js"></script>
+</body>
+</html>
