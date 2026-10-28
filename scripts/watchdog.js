@@ -1,24 +1,24 @@
 'use strict';
 
-// Vigia do Colheita+: mantém o servidor (porta 3000) e o túnel ngrok no ar.
-// A cada minuto testa o site local e o endereço público; se algo cair, religa.
+// Vigia do Colheita+: mantém o servidor local (porta 3000) no ar.
+// A cada minuto testa o site; se ele cair ou travar, religa.
 // Uso:  node scripts/watchdog.js   (ou scripts/start-watchdog.vbs, janela oculta)
 // Registro em scripts/watchdog.log
+//
+// O site público agora fica no Render (https://colheita-mais.onrender.com),
+// então este vigia cuida só da versão do seu computador.
 
 const { spawn, execFile } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 const http = require('http');
-const https = require('https');
 
 const RAIZ = path.join(__dirname, '..');
 const LOG = path.join(__dirname, 'watchdog.log');
 const URL_LOCAL = 'http://localhost:3000/';
-const URL_PUBLICA = 'https://consuming-raving-recovery.ngrok-free.dev/';
 const INTERVALO = 60 * 1000;
 
-let falhasLocal = 0;
-let falhasPublica = 0;
+let falhas = 0;
 
 function log(msg) {
   const linha = `[${new Date().toLocaleString('pt-BR')}] ${msg}\n`;
@@ -27,8 +27,7 @@ function log(msg) {
 
 function testar(url) {
   return new Promise((resolve) => {
-    const lib = url.startsWith('https') ? https : http;
-    const req = lib.get(url, { timeout: 15000, headers: { 'ngrok-skip-browser-warning': '1' } }, (res) => {
+    const req = http.get(url, { timeout: 15000 }, (res) => {
       res.resume();
       resolve(res.statusCode);
     });
@@ -51,14 +50,6 @@ function pidsNaPorta3000() {
   });
 }
 
-function ngrokRodando() {
-  return new Promise((resolve) => {
-    execFile('tasklist', ['/FI', 'IMAGENAME eq ngrok.exe'], { windowsHide: true }, (err, out) => {
-      resolve(!err && /ngrok\.exe/i.test(out));
-    });
-  });
-}
-
 function matar(pid) {
   return new Promise((resolve) => execFile('taskkill', ['/F', '/PID', String(pid)], { windowsHide: true }, () => resolve()));
 }
@@ -70,52 +61,24 @@ function iniciarServidor() {
   log(`Servidor iniciado (PID ${p.pid}).`);
 }
 
-function iniciarNgrok() {
-  const p = spawn('ngrok', ['http', '--url=' + URL_PUBLICA.replace(/\/$/, ''), '3000'],
-    { detached: true, stdio: 'ignore', windowsHide: true, shell: true });
-  p.unref();
-  log('ngrok iniciado.');
-}
-
 async function verificar() {
-  // 1) Servidor local
-  const local = await testar(URL_LOCAL);
-  if (local === 200) {
-    if (falhasLocal) log('Servidor respondendo novamente.');
-    falhasLocal = 0;
-  } else {
-    falhasLocal++;
-    const pids = await pidsNaPorta3000();
-    log(`Servidor não respondeu (status ${local}, tentativa ${falhasLocal}).`);
-    if (!pids.length) {
-      iniciarServidor();
-    } else if (falhasLocal >= 3) {
-      // Processo existe mas travou: reinicia
-      for (const pid of pids) await matar(pid);
-      log('Servidor travado: reiniciando.');
-      setTimeout(iniciarServidor, 2000);
-      falhasLocal = 0;
-    }
-    return; // sem servidor não adianta testar o túnel agora
-  }
-
-  // 2) Túnel ngrok (endereço público)
-  const publica = await testar(URL_PUBLICA);
-  if (publica === 200) {
-    if (falhasPublica) log('Endereço público respondendo novamente.');
-    falhasPublica = 0;
+  const status = await testar(URL_LOCAL);
+  if (status === 200) {
+    if (falhas) log('Servidor respondendo novamente.');
+    falhas = 0;
     return;
   }
-  falhasPublica++;
-  log(`Endereço público não respondeu (status ${publica}, tentativa ${falhasPublica}).`);
-  if (!(await ngrokRodando())) {
-    iniciarNgrok();
-  } else if (falhasPublica >= 3) {
-    execFile('taskkill', ['/F', '/IM', 'ngrok.exe'], { windowsHide: true }, () => {
-      log('ngrok sem resposta: reiniciando.');
-      setTimeout(iniciarNgrok, 3000);
-    });
-    falhasPublica = 0;
+  falhas++;
+  const pids = await pidsNaPorta3000();
+  log(`Servidor não respondeu (status ${status}, tentativa ${falhas}).`);
+  if (!pids.length) {
+    iniciarServidor();
+  } else if (falhas >= 3) {
+    // Processo existe mas travou: reinicia
+    for (const pid of pids) await matar(pid);
+    log('Servidor travado: reiniciando.');
+    setTimeout(iniciarServidor, 2000);
+    falhas = 0;
   }
 }
 
