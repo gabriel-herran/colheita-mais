@@ -1,129 +1,151 @@
-# Colheita+ — Sistema de Gestão de Produção Agrícola
+# 🌱 Colheita+ — Sistema de Gestão de Produção Agrícola
 
-Site em JavaScript (Node.js + Express) com banco de dados **PostgreSQL**.
+Sistema web para o produtor rural organizar **propriedades, produções, gastos, mão de obra, transporte e clima** em um só lugar, do plantio à colheita.
 
-## Telas
-1. **Página inicial** (`index.html`) — logo no topo, os botões **É novo?** → cadastro e
-   **Comece já!** → login; abaixo, apresentação do sistema, recursos, texto sobre a produção
-   rural e os passos para começar.
-2. **Cadastro** (`cadastro.html`) — Área de cadastro.
-3. **Login** (`login.html`) — Área de Login.
-4. **Tela Inicial do Sistema** (`home.html`) — pós-login, botão **Iniciar o Sistema** no topo.
-5. **Propriedades e Produções** (`sistema.html`) — Resumo Geral (propriedades, produções,
-   clima atual, gastos do mês, anotações da semana), três botões principais
-   (**Cadastrar Propriedade**, **Gerenciar Produções** e **Cadastrar Produção** — com lista
-   obrigatória de propriedades) e Acesso rápido. "Gerenciar Produções" abre uma janela com as
-   funções de gestão; cada uma abre uma tela própria.
-6. **Telas de gestão** — uma página por função: **Produções** (`producoes.html`: editar,
-   excluir, reorganizar e gerar PDFs), **Anotações escritas** (`anotacoes.html`),
-   **Mão de obra** (`mao-de-obra.html`), **Transporte** (`transporte.html`),
-   **Despesas e gastos** (`despesas.html`), **Materiais usados** (`materiais.html`) e
-   **Propriedades** (`propriedades.html`: editar, excluir e reorganizar). Todas têm, em caixas:
-   a lista para escolher a propriedade (e depois a produção), a caixa de informações e a
-   navegação rápida para as outras funções. A escolha é lembrada entre as telas.
-   Na **Mão de obra** há método (Pix, dinheiro físico...), frequência (semanal, quinzenal,
-   mensal...), prazo para pagar e "já está pago"; passou do prazo sem pagar, chega uma notificação.
-   (`propriedade.html` antiga apenas redireciona para `producoes.html`.)
-7. **Fórum** (`forum.html` / `discussao.html`) — busca, filtros, tags, comentários,
-   editar/trancar/excluir (somente o criador). Cada um pode editar ou excluir o próprio comentário.
-8. **Calculadora** (`calculadora.html`), **Calendário** (`calendario.html`),
-   **Visão Gráfica** (`graficos.html`) e **Clima** (`clima.html`, dados da Open-Meteo).
+Projeto desenvolvido como **Trabalho de Conclusão de Curso (TCC)**.
 
-### Cabeçalho e menu lateral
-- **Engrenagem** → janela de Configurações (tema claro/escuro/automático, zoom da tela com barra deslizante,
-  negrito, alto contraste, espaçamento, destaque de foco, reduzir animações e leitura em voz alta).
-  As preferências ficam salvas no navegador (`js/prefs.js`).
-- **Sino** → notificações, com contador vermelho. Avisos do calendário (7 dias, 3 dias, 1 dia e
-  no dia do evento), comentários nas suas discussões do fórum e pagamentos de mão de obra
-  vencidos ou atrasados.
-- **Ícone do usuário** → abre direto o Perfil do Usuário (o ID não é mais exibido), onde é
-  possível alterar foto, nome, e-mail e senha, e **Encerrar Sessão**.
-- **Menu lateral (gaveta)** no canto esquerdo, da cor do fundo e separado por um contorno escuro:
-  ao clicar (ou passar o mouse) em uma opção aparecem subopções com atalhos — ex.: em
-  "Propriedades e Produções" as telas de gestão; no "Fórum", iniciar discussão, minhas discussões e
-  as discussões em que você comentou. Embaixo, **Encerrar Sessão**.
+**🔗 Acesse o sistema:** **https://colheita-mais.onrender.com**
 
-### Rascunhos
-O que o produtor estiver digitando (formulários, anotações, comentários), a janela aberta e a
-produção expandida ficam salvos no navegador; ao sair e voltar para a tela, tudo continua lá.
-Os rascunhos são apagados ao encerrar a sessão.
+> O site está no plano gratuito do Render: se ficar um tempo sem acessos, a primeira visita pode levar cerca de 50 segundos para carregar.
 
-A fonte usada é a **Exo 2**.
+![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?logo=node.js&logoColor=white)
+![Express](https://img.shields.io/badge/Express-4-000000?logo=express&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-banco%20de%20dados-4169E1?logo=postgresql&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-HTML%20%2B%20CSS-F7DF1E?logo=javascript&logoColor=black)
+![Render](https://img.shields.io/badge/Hospedado%20no-Render-46E3B7?logo=render&logoColor=black)
 
-## Pré-requisitos
-- [Node.js](https://nodejs.org) 18 ou superior
-- [PostgreSQL](https://www.postgresql.org/download/) instalado e rodando
+---
 
-## Passo a passo
+## 📸 Telas
+
+| Página inicial | Painel do produtor |
+|---|---|
+| ![Página inicial](docs/img/01-inicio.png) | ![Painel](docs/img/02-painel.png) |
+
+| Produções e relatórios em PDF | Mão de obra e pagamentos |
+|---|---|
+| ![Produções](docs/img/03-producoes.png) | ![Mão de obra](docs/img/04-mao-de-obra.png) |
+
+| Visão Gráfica | Calendário |
+|---|---|
+| ![Visão Gráfica](docs/img/05-visao-grafica.png) | ![Calendário](docs/img/06-calendario.png) |
+
+| Clima da semana | Fórum entre produtores |
+|---|---|
+| ![Clima](docs/img/07-clima.png) | ![Fórum](docs/img/08-forum.png) |
+
+<p align="center"><b>Modo escuro</b><br><img src="docs/img/09-modo-escuro.png" alt="Modo escuro" width="70%"></p>
+
+*(Prints feitos com uma conta de demonstração e dados fictícios.)*
+
+---
+
+## ✨ Funcionalidades
+
+- **Propriedades e produções** — cadastro, edição, exclusão e reorganização. Cada produção guarda cultura, área plantada, ruas, mão de obra prevista e datas.
+- **Gestão completa da produção**, uma tela para cada função:
+  - **Anotações escritas** das atividades feitas, salvas com data e hora;
+  - **Mão de obra**, com método de pagamento (Pix, dinheiro físico, transferência…), frequência (semanal, quinzenal, mensal…), prazo e situação (pago, a vencer, atrasado);
+  - **Transporte**, **Despesas e gastos** (por categoria) e **Materiais usados** (sementes, adubos, defensivos…).
+- **Relatórios em PDF** — relatório resumido dos últimos 30 dias e histórico completo de toda a produção.
+- **Visão Gráfica** — gastos por mês, por produção e por categoria, com filtros de período, propriedade e produção, e opção de ver cada gráfico como tabela.
+- **Calendário** — anotações por dia, com avisos automáticos ("Faltam 3 dias para…", "Hoje é o dia de…").
+- **Notificações** — eventos do calendário, pagamentos de mão de obra vencidos e comentários nas suas discussões do fórum.
+- **Clima** — condição atual e previsão de domingo a sábado para dezenas de cidades, com dados da [Open-Meteo](https://open-meteo.com).
+- **Fórum** — discussões com tags, busca, filtros e comentários; o criador pode editar, trancar ou excluir a sua discussão.
+- **Calculadora** no estilo da calculadora do Google, funcionando também pelo teclado.
+- **Acessibilidade** — modo escuro, zoom da tela, texto em negrito, alto contraste, espaçamento de leitura, destaque do foco pelo teclado, redução de animações e leitura em voz alta.
+- **Rascunhos automáticos** — o que o produtor está digitando continua lá se ele sair da tela e voltar.
+- Layout responsivo, funciona no computador e no celular.
+
+---
+
+## 🛠️ Tecnologias
+
+| Parte | Tecnologia |
+|---|---|
+| Servidor | Node.js + Express |
+| Banco de dados | PostgreSQL (`pg`) |
+| Login e sessão | `express-session` + `connect-pg-simple` (sessão salva no banco), senhas com `bcryptjs` |
+| PDFs | PDFKit |
+| Interface | HTML, CSS e JavaScript puros (sem frameworks), fonte Exo 2, gráficos em SVG próprios |
+| Clima | API Open-Meteo |
+| Hospedagem | Render (site + PostgreSQL) |
+
+---
+
+## 🔒 Segurança
+
+- Senhas guardadas com **hash bcrypt**, nunca em texto puro.
+- Login por cookie assinado, com a sessão guardada no próprio PostgreSQL; em produção o cookie só trafega por HTTPS.
+- Todas as telas internas exigem login. Cada usuário só acessa as próprias propriedades, produções, registros e notificações.
+- Senhas e segredos ficam fora do código: localmente em `config.local.js` (não versionado) e, na hospedagem, em variáveis de ambiente.
+
+---
+
+## 💻 Como rodar no seu computador
+
+**Pré-requisitos:** [Node.js](https://nodejs.org) 18 ou superior e [PostgreSQL](https://www.postgresql.org/download/) instalado.
 
 1. Instale as dependências:
    ```bash
    npm install
    ```
-
-2. Configure o banco abrindo o arquivo `config.js` e ajustando usuário/senha do
-   PostgreSQL (e, se quiser, a porta do site e o segredo da sessão).
-
-3. Crie o banco e as tabelas automaticamente (o servidor também aplica o
-   `schema.sql` sozinho ao iniciar, então bancos antigos são atualizados sem perder dados):
+2. Crie o arquivo `config.local.js` na raiz do projeto com os dados do seu PostgreSQL:
+   ```js
+   module.exports = {
+     db: { host: 'localhost', port: 5432, user: 'postgres', password: 'SUA_SENHA', database: 'colheita' },
+     port: 3000,
+     sessionSecret: 'troque-por-um-texto-longo-e-aleatorio',
+   };
+   ```
+3. Crie o banco e as tabelas:
    ```bash
    npm run init-db
    ```
-   > Isso cria o banco `colheita` (se não existir) e aplica o `db/schema.sql`.
-   > Alternativa manual: `psql -U postgres -d colheita -f db/schema.sql`
-
+   O servidor também aplica o `db/schema.sql` sozinho ao iniciar, então bancos antigos são atualizados sem perder dados.
 4. Inicie o servidor:
    ```bash
    npm start
    ```
+5. Acesse <http://localhost:3000>.
 
-5. Acesse no navegador: <http://localhost:3000>
+---
 
-## Estrutura
+## ☁️ Publicar no Render
+
+O arquivo [`render.yaml`](render.yaml) já descreve o site e o banco, os dois no plano gratuito. No painel do Render, use **New → Blueprint**, escolha este repositório e confirme. O Render cria o banco, define `DATABASE_URL` e `SESSION_SECRET` e publica o site. A cada novo envio para a branch `main`, o site é atualizado automaticamente.
+
+---
+
+## 📁 Estrutura
+
 ```
-server.js            → servidor Express + API (auth e propriedades)
+server.js              servidor Express, login, perfil e propriedades
+config.js              lê as configurações (config.local.js ou variáveis de ambiente)
+render.yaml            configuração de hospedagem no Render
 routes/
-  producoes.js       → produções e seus registros (atividades, mão de obra, insumos, despesas, transporte)
-  relatorios.js      → PDFs: relatório da produção e histórico bruto (pdfkit)
-  calendario.js      → anotações do calendário e notificações
-  forum.js           → discussões e comentários do fórum
-  graficos.js        → dados da Visão Gráfica e do Resumo Geral
-  util.js            → funções auxiliares (autenticação, validação)
-config.js            → configurações (banco, porta, segredo da sessão)
+  producoes.js         produções e registros (anotações, mão de obra, materiais, despesas, transporte)
+  relatorios.js        relatórios em PDF
+  calendario.js        calendário e notificações
+  forum.js             fórum
+  graficos.js          dados da Visão Gráfica e do resumo do painel
+  util.js              autenticação e validações
 db/
-  pool.js            → conexão com o PostgreSQL
-  init.js            → cria o banco e aplica o schema (npm run init-db)
-  schema.sql         → tabelas do diagrama de classes (usuarios, propriedades,
-                        producao, mao_de_obra, insumos, transporte,
-                        producao_propriedade, producao_transporte, session)
+  schema.sql           tabelas do banco
+  pool.js              conexão com o PostgreSQL
+  init.js              cria o banco local (npm run init-db)
 public/
-  index.html         → página inicial
-  cadastro.html      → cadastro
-  login.html         → login
-  home.html          → início (protegida)
-  sistema.html       → propriedades e resumo (protegida)
-  producoes.html, anotacoes.html, mao-de-obra.html, transporte.html,
-  despesas.html, materiais.html, propriedades.html → telas de gestão (protegidas)
-  js/gestao.js       → lógica comum das telas de gestão
-  js/producao-form.js → janela de cadastro/edição de produção
-  forum.html, discussao.html, calculadora.html, calendario.html,
-  graficos.html, clima.html → novas telas (protegidas)
-  css/style.css      → estilos (Exo 2, tema claro/escuro, acessibilidade)
-  js/common.js       → cabeçalho, menu lateral, notificações, configurações, rascunhos
-  js/prefs.js        → aplica as preferências de aparência antes da página desenhar
-  js/clima-api.js    → cidades e previsão do tempo (Open-Meteo)
-  js/                → scripts das páginas
-  assets/img/engrenagem.png  → ícone de configurações do cabeçalho
-  assets/img/notificacao.png → ícone de notificações do cabeçalho
-  assets/            → imagens, logos e fontes Exo 2
+  *.html               telas do sistema
+  css/style.css        estilos, tema claro/escuro e acessibilidade
+  js/                  scripts das telas
+  assets/              imagens, ícones e fontes
+docs/img/              prints usados neste README
+scripts/               utilitários para rodar o servidor local no Windows
 ```
 
-## Segurança
-- Senhas são armazenadas com **hash bcrypt** (nunca em texto puro).
-- Sessão de login via cookie assinado (`express-session` + `connect-pg-simple`),
-  guardada no próprio PostgreSQL.
-- Todas as telas internas exigem login; sem sessão, o usuário é redirecionado
-  para a tela de login.
-- Cada produção, registro, anotação e notificação só é acessível pelo próprio dono.
-  No fórum, somente o criador pode trancar ou excluir a discussão.
-- O ID do usuário não é exibido nem enviado pela API `/api/me`.
+---
+
+## 👤 Autor
+
+Desenvolvido por [@gabriel-herran](https://github.com/gabriel-herran).
